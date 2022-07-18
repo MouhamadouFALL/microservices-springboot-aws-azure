@@ -57,6 +57,17 @@ public class PromotionController {
 		}
 	}
 	
+	@GetMapping("/promocode/{code}")
+	@Transactional(readOnly=true)
+	public Promotion getPromotionByCode(@PathVariable(value = "code") String code) {
+		
+		Promotion promo = null;
+		promo = repo.findByCode(code);
+		
+		return promo;
+		
+	}
+	
 	@PostMapping("/promotions")
 	@Transactional
 	public Promotion savePromotion(@RequestBody Promotion promo) {
@@ -95,15 +106,4 @@ public class PromotionController {
 		}
 	}
 	
-	
-	@GetMapping("/promocode/{code}")
-	@Transactional(readOnly=true)
-	public Promotion getPromotionByCode(@PathVariable(value = "code") String code) {
-		
-		Promotion promo = null;
-		promo = repo.findByCode(code);
-		
-		return promo;
-		
-	}
 }

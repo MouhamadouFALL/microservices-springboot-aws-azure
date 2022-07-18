@@ -22,3 +22,14 @@ produitservice/HELP.md
 produitservice/.project
 produitservice/mvnw
 produitservice/mvnw.cmd
+
+
+eurekaserver/!.mvn/wrapper/maven-wrapper.jar
+eurekaserver/.mvn/
+eurekaserver/.settings/
+eurekaserver/target/
+eurekaserver/.classpath
+eurekaserver/HELP.md
+eurekaserver/.project
+eurekaserver/mvnw
+eurekaserver/mvnw.cmd
