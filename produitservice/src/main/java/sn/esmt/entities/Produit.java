@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -20,6 +21,9 @@ public class Produit implements Serializable {
 	private Long id;
 	private String nom;
 	private float prix;
+	
+	@Transient
+	private String codePromo;
 	
 	public Produit() {
 		// TODO Auto-generated constructor stub
@@ -47,5 +51,13 @@ public class Produit implements Serializable {
 
 	public void setPrix(float prix) {
 		this.prix = prix;
+	}
+
+	public String getCodePromo() {
+		return codePromo;
+	}
+
+	public void setCodePromo(String codePromo) {
+		this.codePromo = codePromo;
 	}
 }

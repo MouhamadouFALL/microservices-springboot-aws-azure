@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import sn.esmt.clients.ClientPromotion;
 import sn.esmt.entities.Produit;
+import sn.esmt.entities.Promotion;
 import sn.esmt.repository.ProduitRepository;
 
 @RestController
@@ -21,6 +23,9 @@ public class ProduitController {
 	
 	@Autowired
 	private ProduitRepository repo;
+	
+	@Autowired
+	private ClientPromotion client;
 	
 	@GetMapping("/produits")
 	@Transactional(readOnly = true)
@@ -47,8 +52,16 @@ public class ProduitController {
 	@Transactional
 	public Produit saveProduit(@RequestBody Produit produit) {
 		
+		Promotion promo = client.getPromotionByCode(produit.getCodePromo());
+		float res1 = promo.getTauxr()/100;
+		float res2 = produit.getPrix() - res1*produit.getPrix();
+		int prixF = (int)res2;
+		produit.setPrix(prixF);
 		return repo.save(produit);
 	}
 	
-	
+	@GetMapping("/show")
+	public List<Promotion> showAllPromotions(){
+		return client.getAllPromotions();
+	}
 }
